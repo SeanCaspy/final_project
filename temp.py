@@ -10,7 +10,7 @@ def load_audio(file_path):
 
 def apply_noise_reduction(y, sr):
     # Example: Apply a simple low-pass filter
-    cutoff_freq = 3000  # Adjust as needed
+    cutoff_freq = 2000  # Adjust as needed
     b, a = scipy.signal.butter(4, cutoff_freq / (0.5 * sr), 'low')
     filtered_y = scipy.signal.lfilter(b, a, y)
     return filtered_y
@@ -26,3 +26,4 @@ if __name__ == "__main__":
     y, sr = load_audio(input_file)
     filtered_y = apply_noise_reduction(y, sr)
     save_filtered_audio(filtered_y, sr, output_file)
+    print(f"idk what to right know")
