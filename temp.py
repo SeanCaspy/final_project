@@ -26,4 +26,4 @@ if __name__ == "__main__":
     y, sr = load_audio(input_file)
     filtered_y = apply_noise_reduction(y, sr)
     save_filtered_audio(filtered_y, sr, output_file)
-    print(f"idk what to right know")
+
