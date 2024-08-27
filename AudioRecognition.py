@@ -4,7 +4,7 @@ import pyaudio
 import numpy as np
 import librosa
 import joblib
-from sklearn.preprocessing import StandardScaler
+
 
 # Load the trained model and scaler
 model = joblib.load('factory_noise_model.pkl')
@@ -33,20 +33,18 @@ def classify_audio(features):
 def real_time_classification():
     p = pyaudio.PyAudio()
     stream = p.open(format=pyaudio.paInt16, channels=1, rate=SAMPLE_RATE, input=True, frames_per_buffer=CHUNK)
-    in_factory = False
 
-    print("Listening...")
     try:
         audio_chunk = stream.read(CHUNK)
         features = extract_features(audio_chunk)
         prediction = classify_audio(features)
 
         if prediction == 'factory':
-            print("factory detected!")
+            # print("factory detected!")
             return True
 
         if not prediction == 'factory':
-            print('not in factory')
+            # print('not in factory')
             return False
         time.sleep(5)
 
