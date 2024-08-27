@@ -5,17 +5,13 @@ import wave
 from scipy.fft import fft, ifft
 
 
-# Define audio parameters
-CHUNK = 1024  # Adjust based on latency and processing requirements
+
+CHUNK = 1024  
 FORMAT = pyaudio.paInt16
-CHANNELS = 1  # Assuming mono microphone input
+CHANNELS = 1 
 RATE = 44100
-
-# Define noise reduction parameters
-noise_duration = 1  # Record noise in seconds before starting speech
-alpha = 0.1  # Smoothing factor for spectral subtraction
-
-# Define output filename
+noise_duration = 1  
+alpha = 0.1 
 output_filename = "noise_reduced_recording.wav"
 
 
@@ -34,7 +30,6 @@ def noise_reduction(data, noise_spectrum):
     # Perform spectral subtraction
     reduced_spectrum = data - smoothed_noise
 
-    # Apply bandpass filter (optional)
     b, a = butter_bandpass(lowcut=300, highcut=8000, fs=RATE)
     reduced_spectrum = lfilter(b, a, reduced_spectrum)
 
