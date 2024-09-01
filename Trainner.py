@@ -1,6 +1,3 @@
-# This part is responsible for training the model. It loads the numpy arrays, 
-# train it, and save the trained model. this part is not required for running the code
-
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
@@ -8,6 +5,8 @@ from sklearn.metrics import classification_report
 import joblib
 import numpy as np
 
+# This part is responsible for training the model. It loads the numpy arrays, 
+# train it, and save the trained model. this part is not required for running the code
 
 X = np.load('X.npy')
 y = np.load('y.npy')
