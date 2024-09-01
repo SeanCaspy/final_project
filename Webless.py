@@ -79,7 +79,7 @@ def MDCTinv(y):
 
 
 # Audio processing function
-def run_mdct(stop_event):
+def run_mdct():
     global stream, p
     p = pyaudio.PyAudio()
 
@@ -95,7 +95,7 @@ def run_mdct(stop_event):
     noise_history = []
 
     try:
-        while not stop_event.is_set():
+        while True:
             try:
                 if not in_factory and real_time_classification():
                     print("factory detected!")
@@ -158,20 +158,5 @@ def run_mdct(stop_event):
         cv2.destroyAllWindows()
 
 
-# Main function to start audio processing
-def main():
-    global stop_event, processing_thread
-
-    stop_event.clear()
-    processing_thread = threading.Thread(target=run_mdct, args=(stop_event,))
-    processing_thread.start()
-
-    try:
-        processing_thread.join()
-    except KeyboardInterrupt:
-        stop_event.set()
-        processing_thread.join()
-
-
 if __name__ == '__main__':
-    main()
+    run_mdct()
