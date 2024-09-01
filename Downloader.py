@@ -1,3 +1,6 @@
+# This file helped us to unzip the downloaded dataset.
+# It is not required for the running code
+
 import gzip
 gz_file = 'UrbanSound8K.tar.gz'
 with gzip.open(gz_file, 'rt') as f:
