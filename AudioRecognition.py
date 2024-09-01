@@ -5,6 +5,10 @@ import numpy as np
 import librosa
 import joblib
 
+# This part of the code is responsible for the classification of whether the sounds from the user are from a factory or not.
+# This code detects the features from the real-time sounds and classifies them based on the trained model whether the sound is from a factory or not.
+# Based on that, it returns true or false for further calculation.
+
 
 # Load the trained model and scaler
 model = joblib.load('factory_noise_model.pkl')
