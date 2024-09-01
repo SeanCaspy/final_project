@@ -8,6 +8,13 @@ import threading
 import cv2
 from AudioRecognition import real_time_classification
 
+# this is the running part of the program the audio stream runs into the machine. the machine tries to detect if the
+# user is in a factory to adjust the calculates of the threshold. the code calculate the avg sound and sets it to be
+# the threshold. the machine manipulate the sound to be more computable and transform the sound into frequencies.
+# later the machine checks whether a frequent is above or below the threshold. if it's above nothing happens but if
+# it belows it's been multiply by zero. after that the machine assemble the matrix back into a sound and bring it
+# back to the user.
+
 app = Flask(__name__)
 CORS(app)
 
@@ -83,12 +90,6 @@ def MDCTinv(y):
     return x
 
 
-# this is the running part of the program the audio stream runs into the machine. the machine tries to detect if the
-# user is in a factory to adjust the calculates of the threshold. the code calculate the avg sound and sets it to be
-# the threshold. the machine manipulate the sound to be more computable and transform the sound into frequencies.
-# later the machine checks whether a frequent is above or below the threshold. if it's above nothing happens but if
-# it belows it's been multiply by zero. after that the machine assemble the matrix back into a sound and bring it
-# back to the user.
 def run_mdct(stop_event):
     global stream, p
     p = pyaudio.PyAudio()
