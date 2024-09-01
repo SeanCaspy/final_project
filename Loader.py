@@ -3,6 +3,8 @@ import numpy as np
 import librosa
 import pandas as pd
 
+# This part is responssible for loading the features from the dataset and creating two numpy arrays
+# for each set, factory and not factory.
 
 def extract_features(file_path):
     y, sr = librosa.load(file_path, sr=16000)
