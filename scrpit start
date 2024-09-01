@@ -1,0 +1,25 @@
+<script>
+        async function startAudioProcessing() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/start', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function stopAudioProcessing() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/stop', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
