@@ -10,7 +10,6 @@ import joblib
 # Based on that, it returns true or false for further calculation.
 
 
-# Load the trained model and scaler
 model = joblib.load('factory_noise_model.pkl')
 scaler = joblib.load('scaler.pkl')
 
