@@ -18,7 +18,6 @@ from AudioRecognition import real_time_classification
 app = Flask(__name__)
 CORS(app)
 
-# Signal Processing Parameters
 N = 576  # Number of subbands and block size
 CHUNK_SIZE = N
 FORMAT = pyaudio.paInt16  # Conversion format for PyAudio stream
@@ -31,14 +30,11 @@ cols = CHUNK_SIZE
 fftlen = cols
 frame = 0.0 * np.ones((rows, cols, 3))
 
-# Initialize global variables for threading and PyAudio
 stop_event = threading.Event()
 processing_thread = None
 stream = None
 p = None
 
-
-# Define matrices and transform functions
 def Dmatrix(samples):
     out = np.zeros(N)
     out[0:int(N / 2)] = Dmatrix.z
