@@ -5,6 +5,7 @@ import scipy.fftpack as spfft
 import threading
 import cv2
 from AudioRecognition import real_time_classification
+import time
 
 # Signal Processing Parameters
 N = 576  # Number of subbands and block size
@@ -24,6 +25,7 @@ stop_event = threading.Event()
 processing_thread = None
 stream = None
 p = None
+start_time = time.time()
 
 
 # Define matrices and transform functions
@@ -78,6 +80,14 @@ def MDCTinv(y):
     return x
 
 
+def time_counter():
+    global start_time
+    if time.time() - start_time > 5:
+        start_time = time.time()
+        return True
+    return False
+
+
 # Audio processing function
 def run_mdct():
     global stream, p
@@ -97,12 +107,13 @@ def run_mdct():
     try:
         while True:
             try:
-                if not in_factory and real_time_classification():
-                    print("factory detected!")
-                    in_factory = True
-                if in_factory and not real_time_classification():
-                    print("not in factory")
-                    in_factory = False
+                if time_counter():
+                    if not in_factory and real_time_classification():
+                        print("factory detected!")
+                        in_factory = True
+                    if in_factory and not real_time_classification():
+                        print("not in factory")
+                        in_factory = False
 
                 data = stream.read(CHUNK_SIZE, exception_on_overflow=False)
                 shorts = struct.unpack('h' * CHUNK_SIZE, data)
